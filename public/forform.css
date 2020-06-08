@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: auto;
+
+/*     height: 800px; */
+    height: 100vh;
+    background-image: url(https://cdn.glitch.com/827b7ece-9fe3-409c-91af-8ab58674d64d%2Ffon.jpg?v=1591645382934);
+    background-position: 50% 50%;
+}
+
+form {
+    padding: 20px;
+    outline: black 2px solid;
+    display: flex;
+    flex-direction: column;
+	  background-color: #FFCCFF;
+}
+
+form input {
+    width: 100%;
+}
+
+form input[type="radio"] {
+    width: auto
+}
+
+form select {
+    width: 100%;
+}
+
+form textarea {
+    width: 95%;
+}
+
+form button {
+    margin-top: 8px;
+}
+form input[type="checkbox"] {
+    width: auto
+}
+div {
+    width: 400px;
+    height: 250px;
+    background-image: url(https://cdn.glitch.com/827b7ece-9fe3-409c-91af-8ab58674d64d%2Ffon.jpg?v=1591645382934);
+    background-position: 50% 50%;
+    background: rgba(15,17,156,0.7);
+    color: white;
+    padding: 20px;
+    font-size: 34px;
+}
+div a {
+  color: white;
+}

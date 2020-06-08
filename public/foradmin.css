@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+/*   justify-content: center; */
+
+  margin: auto;
+
+  height: 800px;
+  background-image: url(https://cdn.glitch.com/827b7ece-9fe3-409c-91af-8ab58674d64d%2Ffon.jpg?v=1591645382934);
+  background-position: 50% 50%;
+}
+
+form {
+  padding: 20px;
+  outline: black 2px solid;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFCCFF;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  width: 300px;
+  background: white;
+}
+
+.login-box button {
+  margin-top: 20px;
+}
+
+.results {
+  background: white;
+  margin-bottom: 40px;
+}
+
+.results .person {
+  width: 600px;
+  padding: 20px;
+}

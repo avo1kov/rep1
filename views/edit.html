@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Веб-форма</title>
+    <link rel="stylesheet" href="./forform.css" />
+  </head>
+
+  <body>
+
+	<h2>Герои нашего времени</h2>
+
+    <form action="https://dandelion-pepper-tartan.glitch.me/edit" method="POST" name="mainform" enctype="application/x-www-form-urlencoded">
+
+      <label>
+       Имя:<br />
+        <input name="field-name"  placeholder="Введите имя" value="<%- fieldName %>" />
+      </label><br />
+
+      <label>
+        e-mail:<br />
+        <input name="field-email" value="<%- fieldEmail %>" placeholder="Введите e-mail">
+        </input>
+      </label><br />
+
+      <label>
+        Дата рождения:<br />
+        <input type="date" name="field-birthday" value="<%- fieldBirthday %>">
+      </label><br />
+
+      <fieldset id="gender">
+          <legend>Пол</legend>
+
+          <input type="radio" id="male-gender" value="male" name="field-gender" checked/>
+          <label for="gender">Мужской</label>
+
+          <input type="radio" id="female-gender" value="female" name="field-gender" />
+          <label for="gender">Женский</label>
+		  
+		      <input type="radio" id="gender" value="female" name="field-gender" />
+          <label for="gender">Затрудняюсь ответить</label>
+      </fieldset>
+
+      <fieldset id="igotapower">
+          <legend>Суперспособности</legend>
+
+          <select name="field-select-powers" value="<%- fieldSelectPowers %>">
+            <option value="power-readmind">Чтение мыслей</option>
+            <option value="power-delphi">Делфи разработчик</option>
+            <option value="power-govoda">Хожу по воде</option>
+            <option value="power-impossible">Делать всё заранее</option>
+          </select>
+      </fieldset>
+
+      <label>
+        Пара слов о себе:<br>
+        <textarea name="field-name-1"><%- fieldName1 %></textarea>
+      </label>
+
+      <button type="submit">Сохранить</button>
+    </form>
+    
+    <script>
+      if ("<%- fieldGender %>" == "male") {
+        document.getElementById("male-gender").checked = true;
+      } else {
+        document.getElementById("female-gender").checked = true;
+      }
+    </script>
+
+  </body>
+
+</html> 

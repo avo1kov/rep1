@@ -1,0 +1,165 @@
+<!--
+Задача 7.
+
+Составить HTML-форму с полями:
+
+- имя (текстовое поле);
+
+- e-mail (текстовое поле);
+
+- год рождения (выбор из списка);
+
+- пол (радиокнопки);
+
+- количество конечностей (радиокнопки);
+
+- сверхспособности: бессмертие, прохождение сквозь стены, левитация (множественный выбор из списка);
+
+- биография (многострочное текстовое поле);
+
+- с контрактом ознакомлен (чекбокс);
+
+- кнопка «Отправить».
+
+Оформить страницу красиво с использованием CSS. 
+
+-->
+
+<!DOCTYPE html>
+
+<!-- комментарий в HTML -->
+
+<!-- в первой строке мы сообщаем браузеру,
+  что это документ HTML5 -->
+
+<html>
+
+  <head>
+    <title>Веб-форма</title>
+    <link rel="stylesheet" href="./forform.css" />
+  </head>
+
+  <body>
+
+
+  <body>
+
+	<h2>Герои нашего времени</h2>
+
+    <form action="https://dandelion-pepper-tartan.glitch.me/add"
+      method="POST" name="mainform">
+
+      <label>
+       Имя:<br />
+        <input name="field-name" value="" placeholder="Введите имя" onkeyup="setCookie('field-name', this.value, 5)" />
+      </label><br />
+
+      <label>
+        e-mail:<br />
+        <input name="field-email" value="" placeholder="Введите e-mail" onchange="setCookie('field-email', this.value, 5)">
+        </input>
+      </label><br />
+
+      <label>
+        Дата рождения:<br />
+        <input type="date" name="field-birthday"  onchange="setCookie('field-birthday', this.value, 5)">
+      </label><br />
+
+      <fieldset id="gender">
+          <legend>Пол</legend>
+
+          <input type="radio" id="male-gender" value="male" name="field-gender" onchange="setCookie('field-gender', 'male', 5)" checked/>
+          <label for="gender">Мужской</label>
+
+          <input type="radio" id="female-gender" value="female" name="field-gender" onchange="setCookie('field-gender', 'female', 5)"/>
+          <label for="gender">Женский</label>
+		  
+		      <input type="radio" id="gender" value="female" name="field-gender" onchange="setCookie('field-gender', 'female', 5)"/>
+          <label for="gender">Затрудняюсь ответить</label>
+      </fieldset>
+
+      <fieldset id="igotapower">
+          <legend>Суперспособности</legend>
+
+          <select name="field-select-powers" onchange="setCookie('field-select-powers', this.value, 5)">
+            <option value="power-readmind">Чтение мыслей</option>
+            <option value="power-delphi">Делфи разработчик</option>
+            <option value="power-govoda">Хожу по воде</option>
+            <option value="power-impossible">Делать всё заранее</option>
+          </select>
+      </fieldset>
+
+      <label>
+        Пара слов о себе:<br>
+        <textarea name="field-name-1" onchange="setCookie('field-name-1', this.value, 5)">Пишите, не стесняйтесь :)</textarea>
+      </label>
+      
+	  Согласие на обработку данных:<br />
+      <label><input type="checkbox" checked="checked"
+        name="check-1" />
+        ну ладно..</label><br />
+
+
+    <button type="submit">Отправить</button>
+    </form>
+    
+    <script>
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+      
+      console.log(document.cookie);
+      
+      const nameInput = document.forms["mainform"].elements["field-name"];
+      if (nameInput.value == "") {
+        console.log("yeah");
+        nameInput.value = getCookie("field-name");
+      }
+      
+      const emailInput = document.forms["mainform"].elements["field-email"];
+      if (emailInput.value == "") {
+        emailInput.value = getCookie("field-email");
+      }
+      
+      const birthdayInput = document.forms["mainform"].elements["field-birthday"];
+      if (birthdayInput.value == "") {
+        birthdayInput.value = getCookie("field-birthday");
+      }
+      
+      
+      if (getCookie("field-gender") == "male") {
+        document.getElementById("male-gender").checked = true;
+      } else {
+        document.getElementById("female-gender").checked = true;
+      }
+      
+      const genderInput = document.forms["mainform"].elements["field-select-powers"];
+      genderInput.value = getCookie("field-select-powers");
+      
+      cookiedDesc = getCookie("field-name-1");
+      if (cookiedDesc) {
+        document.forms["mainform"].elements["field-name-1"].innerText = cookiedDesc;
+      }
+    </script>
+
+  </body>
+
+</html> 
