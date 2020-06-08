@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<!-- комментарий в HTML -->
+
+<!-- в первой строке мы сообщаем браузеру,
+  что это документ HTML5 -->
+
+<html>
+
+  <head>
+    <title>Веб-форма</title>
+    <link rel="stylesheet" href="./foradmin.css" />
+  </head>
+
+
+  <body>
+
+    <h2>Панель админа</h2>
+
+    <div class="login-box" id="login-box">
+      Логин:
+      <input type="text" id="username" />
+      <br />
+      Пароль:
+      <input type="password" id="password" />
+      <button onclick="auth()">Получить доступ</button>
+    </div>
+
+    <div class="results" id="results">
+    </div>
+
+    <script>
+
+      const loginBox = document.getElementById("login-box");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const results = document.getElementById("results");
+
+      const auth = () => {
+        function reqListener () {
+          const res = JSON.parse(this.responseText);
+          if (res.success) {
+            console.log("success");
+            loginBox.style.display = 'none';
+            res.files_content.forEach(content => {
+              const newPerson = document.createElement("form");
+              newPerson.setAttribute("action", "https://admin:123@dandelion-pepper-tartan.glitch.me/delete");
+              newPerson.setAttribute("method", "POST");
+              newPerson.setAttribute("enctype", "application/x-www-form-urlencoded");
+              newPerson.classList.add("person");
+
+              // field-name
+              const nameNote = document.createElement("div");
+              const nameProp = document.createElement("span");
+              const nameVal = document.createElement("span");
+
+              nameNote.classList.add("note");
+              nameProp.classList.add("prop");
+              nameVal.classList.add("value");
+
+              nameProp.innerText = "Имя: ";
+              nameVal.innerText = content["field-name"];
+
+              nameNote.appendChild(nameProp).appendChild(nameVal);
+              newPerson.appendChild(nameNote);
+
+              // field-email
+              const emailNote = document.createElement("div");
+              const emailProp = document.createElement("span");
+              const emailVal = document.createElement("span");
+
+              emailNote.classList.add("note");
+              emailProp.classList.add("prop");
+              emailVal.classList.add("value");
+
+              emailProp.innerText = "E-mail: ";
+              emailVal.innerText = content["field-email"];
+
+              emailNote.appendChild(emailProp).appendChild(emailVal);
+              newPerson.appendChild(emailNote);
+
+              // field-birthday
+              const birthdayNote = document.createElement("div");
+              const birthdayProp = document.createElement("span");
+              const birthdayVal = document.createElement("span");
+
+              birthdayNote.classList.add("note");
+              birthdayProp.classList.add("prop");
+              birthdayVal.classList.add("value");
+
+              birthdayProp.innerText = "Дата рождения: ";
+              birthdayVal.innerText = content["field-birthday"];
+
+              birthdayNote.appendChild(birthdayProp).appendChild(birthdayVal);
+              newPerson.appendChild(birthdayNote);
+
+              // field-gender
+              const genderNote = document.createElement("div");
+              const genderProp = document.createElement("span");
+              const genderVal = document.createElement("span");
+
+              genderNote.classList.add("note");
+              genderProp.classList.add("prop");
+              genderVal.classList.add("value");
+
+              genderProp.innerText = "Пол: ";
+              genderVal.innerText = content["field-gender"];
+
+              genderNote.appendChild(genderProp).appendChild(genderVal);
+              newPerson.appendChild(genderNote);
+
+              results.appendChild(newPerson);
+
+              // field-select-powers
+              const selectPowersNote = document.createElement("div");
+              const selectPowersProp = document.createElement("span");
+              const selectPowersVal = document.createElement("span");
+
+              selectPowersNote.classList.add("note");
+              selectPowersProp.classList.add("prop");
+              selectPowersVal.classList.add("value");
+
+              selectPowersProp.innerText = "Суперспособность: ";
+              selectPowersVal.innerText = content["field-select-powers"];
+
+              selectPowersNote.appendChild(selectPowersProp).appendChild(selectPowersVal);
+              newPerson.appendChild(selectPowersNote);
+
+              // field-name-1
+              const aboutNote = document.createElement("div");
+              const aboutProp = document.createElement("span");
+              const aboutVal = document.createElement("span");
+
+              aboutNote.classList.add("note");
+              aboutProp.classList.add("prop");
+              aboutVal.classList.add("value");
+
+              aboutProp.innerText = "Пара слов о себе: ";
+              aboutVal.innerText = content["field-name-1"];
+
+              aboutNote.appendChild(aboutProp).appendChild(aboutVal);
+              newPerson.appendChild(aboutNote);
+
+              // filename
+              const filenameField = document.createElement("input");
+              filenameField.setAttribute("type", "hidden");
+              filenameField.setAttribute("name", "filename");
+              filenameField.setAttribute("value", content["file-name"]);
+              newPerson.appendChild(filenameField);
+
+              // delete button
+              const deleteButton = document.createElement("button");
+              deleteButton.setAttribute("type", "submit");
+              deleteButton.innerText = "Удалить";
+              // deleteButton.addEventListener("click", () => {
+              //   const deleteReq = new XMLHttpRequest();
+              //   deleteReq.open("POST", "https://dandelion-pepper-tartan.glitch.me/delete");
+              //   deleteReq.setRequestHeader("Authorization", "Basic " + btoa(`${usernameInput.value}:${passwordInput.value}`));
+              //   deleteReq
+              //   deleteReq.send();
+              // });
+              newPerson.appendChild(deleteButton);
+
+              // Adding notes to the results div
+              results.appendChild(newPerson);
+            });
+          }
+
+        }
+
+        const XMLReq = new XMLHttpRequest();
+        XMLReq.addEventListener("load", reqListener);
+        XMLReq.open("POST", "https://dandelion-pepper-tartan.glitch.me/admin");
+        XMLReq.setRequestHeader("Authorization", "Basic " + btoa(`${usernameInput.value}:${passwordInput.value}`));
+        XMLReq.send();
+      }
+    </script>
+
+  </body>
+
+</html> 

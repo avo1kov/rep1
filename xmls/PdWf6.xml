@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<root>
+  <field-name>Натащак</field-name>
+  <field-email>natasha@koso.com</field-email>
+  <field-birthday>2020-06-19</field-birthday>
+  <field-gender>female</field-gender>
+  <field-select-powers>power-readmind</field-select-powers>
+  <field-name-1>Пишите, не стесняйтесь :)</field-name-1>
+  <check1>on</check1>
+  <login>PdWf6.xml</login>
+  <password>iuwPQrHQ</password>
+</root>

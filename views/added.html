@@ -1,0 +1,73 @@
+<!--
+Задача 7.
+
+Составить HTML-форму с полями:
+
+- имя (текстовое поле);
+
+- e-mail (текстовое поле);
+
+- год рождения (выбор из списка);
+
+- пол (радиокнопки);
+
+- количество конечностей (радиокнопки);
+
+- сверхспособности: бессмертие, прохождение сквозь стены, левитация (множественный выбор из списка);
+
+- биография (многострочное текстовое поле);
+
+- с контрактом ознакомлен (чекбокс);
+
+- кнопка «Отправить».
+
+Оформить страницу красиво с использованием CSS. 
+
+-->
+
+<!DOCTYPE html>
+
+<!-- комментарий в HTML -->
+
+<!-- в первой строке мы сообщаем браузеру,
+  что это документ HTML5 -->
+
+<html>
+
+  <head>
+    <title>Веб-форма</title>
+    <link rel="stylesheet" href="./forform.css" />
+  </head>
+
+  <body>
+
+
+  <body>
+
+	<h2>Добавлено</h2>
+
+    <div>
+      Логин: <span id="login"><%- login %></span><br />
+      Пароль: <span id="password"><%- password %></span><br />
+      <a href="https://dandelion-pepper-tartan.glitch.me/">Добавить ещё</a>
+    </div>
+    
+    <script>
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      
+      setCookie("field-name", "", 1);
+      setCookie("field-email", "", 1);
+      setCookie("field-birthday", "", 1);
+      setCookie("field-gender", "", 1);
+      setCookie("field-select-powers", "", 1);
+      setCookie("field-name-1", "", 1);
+    </script>
+
+  </body>
+
+</html> 
